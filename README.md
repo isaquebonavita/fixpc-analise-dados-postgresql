@@ -4,6 +4,10 @@ Modelagem relacional e consultas analíticas extraídas da estrutura do FixPC, p
 
 Como o código-fonte da aplicação web/mobile fica em repositório privado, reuni aqui a estrutura do banco em PostgreSQL, uma massa de dados fictícios para testes e as queries que montei para acompanhar os indicadores da operação.
 
+## Dashboard (Power BI)
+
+![Painel Analítico FixPC](dashboard_fixpc.png)
+
 ## Arquivos
 
 Scripts organizados na ordem de execução no PostgreSQL:
@@ -11,6 +15,8 @@ Scripts organizados na ordem de execução no PostgreSQL:
 - `01_schema_fixpc.sql` — 11 tabelas principais (`users`, `chamados`, `propostas`, `transacoes`, `sessoes_remotas`, `avaliacoes`, etc.), chaves estrangeiras, constraints e índices.
 - `02_seed_fixpc.sql` — Dados fictícios simulando o fluxo real: chamados abertos, em andamento e fechados, split financeiro (15% comissão da plataforma / 85% técnico), pagamentos aprovados e recusados e sessões remotas.
 - `03_analises_negocio.sql` — Queries de análise usando CTEs, Window Functions (`LAG`, `RANK`), cálculo de duração de sessão e agregações condicionais (`FILTER`).
+- `04_views_bi.sql` — Views analíticas (`vw_chamados_analitico`, `vw_transacoes_analitico` e `vw_ranking_tecnicos`) criadas para estruturar os cruzamentos consumidos pelo Power BI.
+- `dashboard_fixpc.pbix` — Arquivo do Power BI Desktop conectado ao PostgreSQL com indicadores de GMV, receita líquida, evolução mensal, meios de pagamento e ranking dos técnicos.
 
 ## O que as consultas analisam
 
